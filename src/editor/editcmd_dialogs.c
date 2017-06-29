@@ -143,7 +143,7 @@ editcmd_dialog_search_show (WEdit * edit)
     if ((dialog_result == B_CANCEL) || (search_text == NULL) || (search_text[0] == '\0'))
     {
         g_free (search_text);
-        if (tmp_input) g_free(tmp_input);
+        if (tmp_input != INPUT_LAST_TEXT) g_free(tmp_input);
         return FALSE;
     }
 
@@ -183,7 +183,7 @@ editcmd_dialog_search_show (WEdit * edit)
         edit->search->search_fn = edit_search_cmd_callback;
         edit->search->update_fn = edit_search_update_callback;
     }
-    if (tmp_input) g_free(tmp_input);
+    if (tmp_input != INPUT_LAST_TEXT) g_free(tmp_input);
     return (edit->search != NULL);
 }
 
