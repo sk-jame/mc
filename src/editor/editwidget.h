@@ -91,6 +91,7 @@ struct WEdit
     /* is search conditions should be started from BOL(^) or ended with EOL($) */
     edit_search_line_t search_line_type;
 
+	char *search_selected_string; /* String that have been selected for search */
     char *last_search_string;   /* String that have been searched */
     off_t search_start;         /* First character to start searching from */
     unsigned long found_len;    /* Length of found string or 0 if none was found */

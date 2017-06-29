@@ -2770,6 +2770,19 @@ edit_search_cmd (WEdit * edit, gboolean again)
 
     if (edit == NULL)
         return;
+	{
+	    off_t start_mark, end_mark;
+		off_t size;
+		unsigned char *copy_buf;
+		edit->search_selected_string = NULL;
+		edit_update_curs_col (edit);
+		if (eval_marks (edit, &start_mark, &end_mark)){
+			copy_buf = edit_get_block (edit, start_mark, end_mark, &size);
+			if (copy_buf != NULL){
+				edit->search_selected_string = copy_buf;
+			}
+		}
+	}
 
     if (!again)
         edit_search (edit);
@@ -2788,18 +2801,6 @@ edit_search_cmd (WEdit * edit, gboolean again)
             history = g_list_first (history);
             g_list_free_full (history, g_free);
 
-			{
-			    off_t start_mark, end_mark;
-  				off_t size;
-  				unsigned char *copy_buf;
-
-  				edit_update_curs_col (edit);
-  				if (eval_marks (edit, &start_mark, &end_mark)){
-  					copy_buf = edit_get_block (edit, start_mark, end_mark, &size);
-  					if (copy_buf != NULL)
-  						edit->last_search_string = copy_buf;
-  				}
-			}
 
 #ifdef HAVE_CHARSET
             edit->search = mc_search_new (edit->last_search_string, cp_source);

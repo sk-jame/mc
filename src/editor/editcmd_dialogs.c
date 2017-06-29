@@ -97,11 +97,15 @@ editcmd_dialog_search_show (WEdit * edit)
     int dialog_result;
 
     list_of_types = mc_search_get_types_strings_array (&num_of_types);
+    char* tmp_input = edit->search_selected_string;
+    if (tmp_input == NULL)
+		tmp_input = INPUT_LAST_TEXT;
 
     {
+
         quick_widget_t quick_widgets[] = {
             /* *INDENT-OFF* */
-            QUICK_LABELED_INPUT (N_("Enter search string:"), input_label_above, INPUT_LAST_TEXT, 
+            QUICK_LABELED_INPUT (N_("Enter search string:"), input_label_above, tmp_input,
                                  MC_HISTORY_SHARED_SEARCH, &search_text, NULL, FALSE, FALSE,
                                  INPUT_COMPLETE_NONE),
             QUICK_SEPARATOR (TRUE),
@@ -139,6 +143,7 @@ editcmd_dialog_search_show (WEdit * edit)
     if ((dialog_result == B_CANCEL) || (search_text == NULL) || (search_text[0] == '\0'))
     {
         g_free (search_text);
+        if (tmp_input) g_free(tmp_input);
         return FALSE;
     }
 
@@ -178,7 +183,7 @@ editcmd_dialog_search_show (WEdit * edit)
         edit->search->search_fn = edit_search_cmd_callback;
         edit->search->update_fn = edit_search_update_callback;
     }
-
+    if (tmp_input) g_free(tmp_input);
     return (edit->search != NULL);
 }
 
@@ -512,7 +517,7 @@ editcmd_dialog_select_definition_show (WEdit * edit, char *match_expr, int max_l
                 vfs_path_free (edit_history_moveto[edit_stack_iterator].filename_vpath);
                 edit_history_moveto[edit_stack_iterator].filename_vpath =
                     vfs_path_from_str ((char *) curr_def->fullpath);
-                edit_history_moveto[edit_stack_iterator].line = (curr_def->line - 10 < 0) (0) : ( curr_def->line - 10 );
+                edit_history_moveto[edit_stack_iterator].line = ((curr_def->line - 10) < 0)?(0) : ( curr_def->line - 10 );
                 edit_reload_line (edit, edit_history_moveto[edit_stack_iterator].filename_vpath,
                                   edit_history_moveto[edit_stack_iterator].line);
             }
