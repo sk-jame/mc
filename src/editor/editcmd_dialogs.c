@@ -512,7 +512,7 @@ editcmd_dialog_select_definition_show (WEdit * edit, char *match_expr, int max_l
                 vfs_path_free (edit_history_moveto[edit_stack_iterator].filename_vpath);
                 edit_history_moveto[edit_stack_iterator].filename_vpath =
                     vfs_path_from_str ((char *) curr_def->fullpath);
-                edit_history_moveto[edit_stack_iterator].line = curr_def->line;
+                edit_history_moveto[edit_stack_iterator].line = (curr_def->line - 10 < 0) (0) : ( curr_def->line - 10 );
                 edit_reload_line (edit, edit_history_moveto[edit_stack_iterator].filename_vpath,
                                   edit_history_moveto[edit_stack_iterator].line);
             }
