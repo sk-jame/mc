@@ -3342,6 +3342,7 @@ edit_complete_word_cmd (WEdit * edit)
 
     /* collect the possible completions              */
     /* start search from begin to end of file */
+    // TODO aai search in included files !!!!!!!!!!!!!!!!!!!
     max_len =
         edit_collect_completions (edit, word_start, word_len, match_expr->str, (GString **) & compl,
                                   &num_compl);
