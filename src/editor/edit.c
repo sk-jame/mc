@@ -859,6 +859,7 @@ edit_move_to_bottom (WEdit * edit)
 static void
 edit_cursor_to_bol (WEdit * edit)
 {
+	// Todo editor should go to the first letter, no to the \t and \s
     edit_cursor_move (edit, edit_buffer_get_current_bol (&edit->buffer) - edit->buffer.curs1);
     edit->search_start = edit->buffer.curs1;
     edit->prev_col = edit_get_col (edit);
