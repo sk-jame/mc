@@ -2779,7 +2779,8 @@ edit_search_cmd (WEdit * edit, gboolean again)
 		if (eval_marks (edit, &start_mark, &end_mark)){
 			copy_buf = edit_get_block (edit, start_mark, end_mark, &size);
 			if (copy_buf != NULL){
-				edit->search_selected_string = copy_buf;
+				if (strstr(copy_buf, "\n") != NULL)
+					edit->search_selected_string = copy_buf;
 			}
 		}
 	}
@@ -3447,7 +3448,7 @@ edit_begin_end_repeat_cmd (WEdit * edit)
 }
 
 /* --------------------------------------------------------------------------------------------- */
-
+// TODO I almost sure that this function used when next window call
 gboolean
 edit_load_forward_cmd (WEdit * edit)
 {
