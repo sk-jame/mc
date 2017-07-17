@@ -225,6 +225,10 @@ etags_set_definition_hash (const char *tagfile, const char *start_path,
                 break;
             }
             /* check if the filename matches the define pos */
+            /* TODO check if it is usage or definition (implementation)
+          	 * Current search has a problem with search, for example, 'struct test'
+          	 * if this struct will be in another struct.
+          	 */
             chekedstr = strstr (buf, match_func);
             if (chekedstr)
             {
