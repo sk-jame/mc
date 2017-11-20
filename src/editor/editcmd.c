@@ -2779,7 +2779,7 @@ edit_search_cmd (WEdit * edit, gboolean again)
 		if (eval_marks (edit, &start_mark, &end_mark)){
 			copy_buf = edit_get_block (edit, start_mark, end_mark, &size);
 			if (copy_buf != NULL){
-				if (strstr(copy_buf, "\n") != NULL)
+				if (strstr(copy_buf, "\n") == NULL)
 					edit->search_selected_string = copy_buf;
 			}
 		}
