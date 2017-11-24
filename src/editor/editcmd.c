@@ -2529,6 +2529,16 @@ edit_replace_cmd (WEdit * edit, gboolean again)
     }
     else
     {
+        off_t start_mark, end_mark;
+		off_t size;
+		unsigned char *copy_buf;
+		edit_update_curs_col (edit);
+		if (eval_marks (edit, &start_mark, &end_mark)){
+			copy_buf = edit_get_block (edit, start_mark, end_mark, &size);
+			if (copy_buf != NULL){
+				saved1 = copy_buf;
+			}
+		}
         char *tmp_inp1, *tmp_inp2;
 
         disp1 = edit_replace_cmd__conv_to_display (saved1 ? saved1 : "");
