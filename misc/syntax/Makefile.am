@@ -51,6 +51,7 @@ SYNTAXFILES =			\
 	m4.syntax		\
 	mail.syntax		\
 	makefile.syntax		\
+	markdown.syntax		\
 	ml.syntax		\
 	named.syntax		\
 	nemerle.syntax		\
@@ -65,10 +66,12 @@ SYNTAXFILES =			\
 	povray.syntax		\
 	procmail.syntax		\
 	properties.syntax	\
+	protobuf.syntax		\
 	puppet.syntax		\
 	python.syntax		\
 	r.syntax		\
 	ruby.syntax		\
+	rust.syntax		\
 	sh.syntax		\
 	slang.syntax		\
 	smalltalk.syntax	\
