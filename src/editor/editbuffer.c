@@ -353,13 +353,28 @@ edit_buffer_count_lines (const edit_buffer_t * buf, off_t first, off_t last)
 off_t
 edit_buffer_get_bol (const edit_buffer_t * buf, off_t current)
 {
+    int i = 0;
+    
     if (current <= 0)
         return 0;
 
-    for (; edit_buffer_get_byte (buf, current - 1) != '\n'; current--)
-        ;
+    char c, tmp;
 
-    return current;
+    do {
+      c = edit_buffer_get_byte (buf, current);
+      if (c == '\t' || c == ' ') {
+          for (i = current; ; i--) {
+              tmp = edit_buffer_get_byte (buf, i - 1);
+              if (tmp == '\n') return current;
+              else if (tmp != '\t' && tmp != ' ') break;
+              else continue;
+          }
+          current = i;
+      }
+      current--;
+    }while(1);
+
+    return 0;
 }
 
 /* --------------------------------------------------------------------------------------------- */
