@@ -1137,6 +1137,7 @@ edit_mouse_callback (Widget * w, mouse_msg_t msg, mouse_event_t * event)
         {
             /* double click */
             edit_mark_current_word_cmd (edit);
+            edit_get_match_keyword_cmd (edit);
             edit_total_update (edit);
         }
         else if (event->count == GPM_TRIPLE)

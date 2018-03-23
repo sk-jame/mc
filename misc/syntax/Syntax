@@ -103,6 +103,9 @@ include fortran.syntax
 file ..\*\\.go$ GoLang\sProgram
 include go.syntax
 
+file ..\*\\.rs$ Rust\sProgram
+include rust.syntax
+
 file ..\*\\.(?i:f)9[05]$ Freeform\sFortran\sProgram
 include f90.syntax
 
@@ -151,7 +154,7 @@ include octave.syntax
 file ..\*\\.(?i:sql)$ SQL\sProgram
 include sql.syntax
 
-file ..\*\\.(hql|HQL)$ HiveQL\sProgram
+file ..\*\\.(?i:hql)$ HiveQL\sProgram
 include hive.syntax
 
 file ..\*\\.(spec|spec\\.in)$ RPM\sSpecfile
@@ -285,6 +288,12 @@ include osl.syntax
 
 file .\*\\.([rR]|Rd|Rscript)$ R\sProgram
 include r.syntax
+
+file ..\*\\.(?i:md)$ Markdown
+include markdown.syntax
+
+file ..\*\\.proto$ Protobuf\sFile
+include protobuf.syntax
 
 file .\* unknown
 include unknown.syntax

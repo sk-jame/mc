@@ -358,22 +358,9 @@ edit_buffer_get_bol (const edit_buffer_t * buf, off_t current)
     if (current <= 0)
         return 0;
 
-    char c, tmp;
-
-    do {
-      c = edit_buffer_get_byte (buf, current);
-      if (c == '\t' || c == ' ') {
-          for (i = current; ; i--) {
-              tmp = edit_buffer_get_byte (buf, i - 1);
-              if (tmp == '\n') return current;
-              else if (tmp != '\t' && tmp != ' ') break;
-              else continue;
-          }
-          current = i;
-      }
-      current--;
-    }while(1);
-
+    for (; edit_buffer_get_byte (buf, current - 1) != '\n'; current--);
+    return current;
+    
     return 0;
 }
 

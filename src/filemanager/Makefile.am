@@ -24,7 +24,8 @@ libmcfilemanager_la_SOURCES = \
 	panelize.c panelize.h \
 	panel.c panel.h \
 	tree.c tree.h \
-	treestore.c treestore.h
+	treestore.c treestore.h \
+	usermenu.c usermenu.h
 
 # Unmaintained, unsupported, etc
 #	listmode.c listmode.h

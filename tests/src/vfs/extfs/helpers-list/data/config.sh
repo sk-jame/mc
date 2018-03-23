@@ -4,6 +4,6 @@
 # See README for how to use this file.
 #
 PERL="/usr/bin/perl"
-AWK="mawk"
+AWK="gawk"
 PYTHON="/usr/bin/python"
 RUBY="/usr/bin/ruby"
